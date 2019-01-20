@@ -11,11 +11,16 @@ public class Main {
         System.out.println("Write move in format 'Piece' 'from' 'to'. Example: P 01 03");
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.println("Your move");
-            String s = sc.nextLine();
-            String[] move = s.split(" ");
-            board.makeMove(move[0], move[1], move[2]);
-            board.printBoard(board);
+            try {
+                System.out.println("Your move");
+                String s = sc.nextLine();
+                String[] move = s.split(" ");
+                board.makeMove(move[0], move[1], move[2]);
+                board.printBoard(board);
+            }
+            catch (Exception e) {
+                System.out.println("Invalid move");
+            }
         }
 
 

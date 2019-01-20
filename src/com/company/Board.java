@@ -13,6 +13,7 @@ public class Board {
         return pieces;
     }
 
+    //starting desc representation
     private final Pieces[][] STARTING_BOARD = {
             {
                 new Rook(Color.WHITE), new Knight(Color.WHITE), new Bishop(Color.WHITE),
@@ -48,10 +49,12 @@ public class Board {
             }
     };
 
+    //Initializing desk with pieces
     public Board() {
         this.pieces = STARTING_BOARD;
     }
 
+    //display current desc state to console
     public void printBoard(Board board) {
         System.out.println(" |_0_|_1_|_2_|_3_|_4_|_5_|_6_|_7_|");
         for (int i = 0; i < board.SIZE; i++) {
@@ -63,6 +66,8 @@ public class Board {
             System.out.println();
         }
     }
+
+    //checking if user move is possible and changing game desc state if true
     public void makeMove(String piece, String from, String to) {
         int x = Integer.parseInt(from.substring(0,1));
         int y = Integer.parseInt(from.substring(1));
