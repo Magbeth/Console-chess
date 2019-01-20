@@ -2,7 +2,6 @@ package com.company.pieces;
 
 import com.company.Board;
 
-import static com.company.Board.Color.WHITE;
 
 public class Pawn extends Pieces {
     public boolean firstMove;
