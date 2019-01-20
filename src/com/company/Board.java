@@ -97,6 +97,9 @@ public class Board {
         if(pie.isMoveLegal(pieces, x, y, i, j)) {
             pieces[i][j] = pieces[x][y];
             pieces[x][y] = null;
+            if (pie instanceof King) {
+                pie.setCastleAvailable(false);
+            }
         }
     }
 }
