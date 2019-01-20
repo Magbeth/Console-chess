@@ -4,15 +4,15 @@ import com.company.Board;
 
 public class Rook extends Pieces {
 
-    //obstacle on piece path. Rook can't jump through over pieces.
-    boolean hasObstacle = false;
 
     //check for move is possible
     @Override
     public boolean isMoveLegal(Pieces[][] pieces, int x, int y, int i, int j) {
         //check for ally piece on destination square
-        if (pieces[i][j] != null && pieces[i][j].color == pieces[x][y].color) return false;
+        if(isDestinationAlly(pieces[x][y], pieces[i][j])) return false;
+//        if (pieces[i][j] != null && pieces[i][j].color == pieces[x][y].color) return false;
         //check for obstacle on path
+        hasObstacle = false;
         if (i - x == 0) {
             for (int k = Math.min(y, j) + 1; k < Math.max(y, j); k++) {
                 if (pieces[x][k] != null) {

@@ -90,6 +90,9 @@ public class Board {
             case 'R':
                 pie = new Rook();
                 break;
+            case 'B':
+                pie = new Bishop();
+                break;
         }
         if(pie.isMoveLegal(pieces, x, y, i, j)) {
             pieces[i][j] = pieces[x][y];
