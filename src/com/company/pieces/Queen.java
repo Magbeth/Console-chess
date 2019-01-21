@@ -9,7 +9,9 @@ public class Queen extends Pieces {
     public boolean isMoveLegal(Pieces[][] pieces, int x, int y, int i, int j) {
         hasObstacle = false;
         //check for ally on destination point
-        if(isDestinationAlly(pieces[x][y], pieces[i][j])) return false;
+        if(isDestinationAlly(pieces[x][y], pieces[i][j])) {
+            return false;
+        }
 
         //check for obstacle on path. Possible moves are Rook-like or Bishop-like. Using its methods.
         //Bishop-like

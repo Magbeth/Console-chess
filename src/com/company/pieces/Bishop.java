@@ -11,15 +11,6 @@ public class Bishop extends Pieces {
         //check for ally on destination point
         if(isDestinationAlly(pieces[x][y], pieces[i][j])) return false;
         //check for obstacle on path
-//        int m = 1;
-//        for (int k = Math.min(x, i)+1; k < Math.max(x, i); k++) {
-//            int l = Math.max(y, j); // l = 5
-//            if (pieces[k][j-m] != null) { //02 35 -- x = {1,2} 14 23  | 13 24
-//                hasObstacle = true;
-//                break;
-//            }
-//            m++;
-//        }
         if ( (x > i && y > j) || (x < i && j > y)) {
             for (int k = 1; k < Math.abs(i - x); k++) {
                 int a = Math.max(x, i);
@@ -46,7 +37,6 @@ public class Bishop extends Pieces {
                 }
             }
         }
-        //TODO Check moves
         //possible moves
         if (Math.abs(i - x) == Math.abs(j - y) && !hasObstacle) return true;
         else return false;

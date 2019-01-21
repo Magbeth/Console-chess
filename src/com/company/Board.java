@@ -94,12 +94,20 @@ public class Board {
                 pie = new Bishop();
                 break;
         }
+        //check for move possibility
         if(pie.isMoveLegal(pieces, x, y, i, j)) {
-            pieces[i][j] = pieces[x][y];
-            pieces[x][y] = null;
+
+            //Castle become not available if King or Rook moved
             if (pie instanceof King) {
-                pie.setCastleAvailable(false);
+                pie.setShortCastleAvailable(false, pieces[x][y].color);
+                pie.setLongCastleAvailable(false, pieces[x][y].color);
             }
+            else if (pie instanceof Rook) {
+                if (y == 0) pie.setShortCastleAvailable(false, pieces[x][y].color);
+                else if (y == 7) pie.setLongCastleAvailable(false, pieces[x][y].color);
+            }
+            //make move
+            pie.makeMove(pieces, x, y, i, j);
         }
     }
 }

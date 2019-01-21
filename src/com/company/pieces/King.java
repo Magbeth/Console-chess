@@ -11,19 +11,41 @@ public class King extends Pieces {
         hasObstacle = false;
         //check for ally on destination point
         if(isDestinationAlly(pieces[x][y], pieces[i][j])) return false;
-        //check for obstacle on path. Possible moves are Rook-like or Bishop-like. Using its methods.
-        //Bishop-like
-        if (Math.abs(i - x) == Math.abs(j - y ) && Math.abs(i - x) == 1 ) {
-            Pieces bishop = new Bishop();
-            return bishop.isMoveLegal(pieces, x, y, i, j);
+        //castling
+        if (isShortCastleAvailable(pieces[x][y].color) && !hasObstacle && i - x == 0 && j == 1) {
+            return true;
         }
-        //Rook-like
-        if ((i - x == 0 && Math.abs(j - y) == 1) || (j - y == 0 && Math.abs(i - x) == 1)) {
-            Pieces rook = new Rook();
-            return rook.isMoveLegal(pieces, x, y, i, j);
+        if (isLongCastleAvailable(pieces[x][y].color) && !hasObstacle && i - x == 0 && j == 5) {
+            return true;
         }
+        //possible moves
+        if (Math.abs(i-x) <=1 && Math.abs(j-y) <=1)  return true;
 
         else return false;
+    }
+
+    public void makeShortCastle(Pieces[][] pieces, int x, int y, int i, int j) {
+        pieces[i][j] = pieces[x][y];
+        pieces[x][y] = null;
+        pieces[i][j+1] = pieces[i][j-1];
+        pieces[i][j-1] = null;
+    }
+
+    public void makeLongCastle(Pieces[][] pieces, int x, int y, int i, int j) {
+        pieces[i][j] = pieces[x][y];
+        pieces[x][y] = null;
+        pieces[i][j - 1] = pieces[i][j + 2];
+        pieces[i][j + 2] = null;
+    }
+
+    @Override
+    public void makeMove(Pieces[][] pieces, int x, int y, int i, int j) {
+        if (Math.abs(i - x) <= 1 && Math.abs(j-y) <= 1 ) {
+            pieces[i][j] = pieces[x][y];
+            pieces[x][y] = null;
+        }
+        else if (i - x == 0 && j == 1) makeShortCastle(pieces, x, y, i, j);
+        else if (i - x == 0 && j == 5) makeLongCastle(pieces, x, y, i, j);
     }
 
     public King(Board.Color color) {
