@@ -8,9 +8,54 @@ public class Board {
 
     public final int SIZE = 8;
     private Pieces[][] pieces;
+    private Color turnToMove = Color.WHITE;
+
+    public Color getTurnToMove() {
+        return turnToMove;
+    }
+
+    public void setTurnToMove(Color turnToMove) {
+        this.turnToMove = turnToMove;
+    }
 
     public Pieces[][] getPieces() {
         return pieces;
+    }
+
+    void swapTurnToMove(Color color) {
+        if (color == Color.WHITE) setTurnToMove(Color.BLACK);
+        else setTurnToMove(Color.WHITE);
+    }
+
+    int literalToNumber (String s) {
+        int x = 8;
+        switch (s.substring(0,1)) {
+            case "A":
+                x = 7;
+                break;
+            case "B":
+                x = 6;
+                break;
+            case "C":
+                x = 5;
+                break;
+            case "D":
+                x = 4;
+                break;
+            case "E":
+                x = 3;
+                break;
+            case "F":
+                x = 2;
+                break;
+            case "G":
+                x = 1;
+                break;
+            case "H":
+                x = 0;
+                break;
+        }
+        return x;
     }
 
     //starting desc representation
@@ -56,9 +101,10 @@ public class Board {
 
     //display current desc state to console
     public void printBoard(Board board) {
-        System.out.println(" |_0_|_1_|_2_|_3_|_4_|_5_|_6_|_7_|");
+        System.out.println("  | H | G | F | E | D | C | B | A |");
+        System.out.println("__|///|///|///|///|///|///|///|///|");
         for (int i = 0; i < board.SIZE; i++) {
-            System.out.print(i+"|");
+            System.out.print((i+1)+"/|");
             for (int j = 0; j < board.SIZE; j++) {
                 if (board.pieces[i][j] != null) System.out.print("_" + board.pieces[i][j] + "_|");
                 else System.out.print("___|");
@@ -69,33 +115,34 @@ public class Board {
 
     //checking if user move is possible and changing game desc state if true
     public void makeMove(String piece, String from, String to) {
-        int x = Integer.parseInt(from.substring(0,1));
-        int y = Integer.parseInt(from.substring(1));
-        int i = Integer.parseInt(to.substring(0,1));
-        int j = Integer.parseInt(to.substring(1));
+        int y = literalToNumber(from);
+        int x = Integer.parseInt(from.substring(1)) - 1;
+        int j = literalToNumber(to);
+        int i = Integer.parseInt(to.substring(1)) - 1;
         Pieces pie = null;
-        switch (piece.charAt(0)) {
-            case 'P':
+        switch (piece) {
+            case "P":
                 pie = new Pawn();
                 break;
-            case 'Q':
+            case "Q":
                 pie = new Queen();
                 break;
-            case 'K':
+            case "K":
                 pie = new King();
                 break;
-            case 'N':
+            case "N":
                 pie = new Knight();
                 break;
-            case 'R':
+            case "R":
                 pie = new Rook();
                 break;
-            case 'B':
+            case "B":
                 pie = new Bishop();
                 break;
         }
+        if (pieces[x][y].color != turnToMove) System.out.println("-----It is " + turnToMove + " turn to move!-----");
         //check for move possibility
-        if(pie.isMoveLegal(pieces, x, y, i, j)) {
+        if(pie.isMoveLegal(pieces, x, y, i, j) && pieces[x][y].color == turnToMove) {
 
             //Castle become not available if King or Rook moved
             if (pie instanceof King) {
@@ -108,6 +155,7 @@ public class Board {
             }
             //make move
             pie.makeMove(pieces, x, y, i, j);
+            swapTurnToMove(pieces[i][j].color);
         }
     }
 }

@@ -21,9 +21,9 @@ public class Pawn extends Pieces {
         //possible first move for BLACK
         if (i - x == -2 && firstMove && pieces[i+1][j] == null) return true;
         //other possible moves excluding destroying enemy pieces
-        if (Math.abs(i-x) == 1 && j - y == 0) return true;
+        if (((i-x == 1 && pieces[x][y].color == Board.Color.WHITE) || (i-x == -1 && pieces[x][y].color == Board.Color.BLACK)) && j - y == 0) return true;
         //destroying enemy pieces
-        if (pieces[i][j] != null && pieces[i][j].color != pieces[x][y].color && Math.abs(i-x) == 1 && Math.abs(j - y) == 1) return true;
+        if (!isDestinationAlly(pieces[x][y], pieces[i][j]) && Math.abs(i-x) == 1 && Math.abs(j - y) == 1) return true;
         else return false;
     }
 

@@ -12,14 +12,15 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         while (true) {
             try {
-                System.out.println("Your move");
+                System.out.println("-------" + board.getTurnToMove() + " turn to move.-------");
                 String s = sc.nextLine();
-                String[] move = s.split(" ");
+                String[] move = s.toUpperCase().trim().split(" ");
                 board.makeMove(move[0], move[1], move[2]);
                 board.printBoard(board);
             }
-            catch (Exception e) {
-                System.out.println("Invalid move");
+            catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("----------Invalid move----------");
+                board.printBoard(board);
             }
         }
 
