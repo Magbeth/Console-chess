@@ -30,9 +30,7 @@ public class Rook extends Pieces {
             }
         }
         //possible moves
-        if ((i - x == 0 || j - y == 0) && !hasObstacle) return true;
-
-        else return false;
+        return (i - x == 0 || j - y == 0) && !hasObstacle;
     }
 
     public Rook(Board.Color color) {

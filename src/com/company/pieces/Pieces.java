@@ -6,11 +6,10 @@ public class Pieces {
     public Board.Color color;
     boolean hasObstacle = false;
 
-    private boolean isWhiteShortCastleAvailable = true;
-    private boolean isBlackShortCastleAvailable = true;
-    private boolean isWhiteLongCastleAvailable = true;
-    private boolean isBlackLongCastleAvailable = true;
-
+    private static boolean isWhiteShortCastleAvailable = true;
+    private static boolean isBlackShortCastleAvailable = true;
+    private static boolean isWhiteLongCastleAvailable = true;
+    private static boolean isBlackLongCastleAvailable = true;
 
     public boolean isShortCastleAvailable(Board.Color color) {
         if (color == Board.Color.BLACK)return isBlackShortCastleAvailable;
@@ -50,4 +49,11 @@ public class Pieces {
         pieces[x][y] = null;
     }
 
+    public boolean isCheckToEnemy(Pieces[][] pieces, int i, int j, int x, int y) {
+        return pieces[i][j].isMoveLegal(pieces, i, j, x, y) && pieces[i][j].color != pieces[x][y].color;
+    }
+
+    public boolean kingUnderAttack(Pieces[][] pieces, int i, int j, int x, int y) {
+        return false;
+    }
 }

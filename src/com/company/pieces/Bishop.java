@@ -38,8 +38,7 @@ public class Bishop extends Pieces {
             }
         }
         //possible moves
-        if (Math.abs(i - x) == Math.abs(j - y) && !hasObstacle) return true;
-        else return false;
+        return Math.abs(i - x) == Math.abs(j - y) && !hasObstacle;
     }
 
     public Bishop(Board.Color color) {

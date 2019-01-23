@@ -18,7 +18,7 @@ public class Main {
                 board.makeMove(move[0], move[1], move[2]);
                 board.printBoard(board);
             }
-            catch (ArrayIndexOutOfBoundsException e) {
+            catch (Exception e) {
                 System.out.println("----------Invalid move----------");
                 board.printBoard(board);
             }

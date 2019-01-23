@@ -9,7 +9,6 @@ public class Pawn extends Pieces {
     public Pawn() {
     }
 
-    //TODO: TO FIX: Here's a bug: pawn can move back.
     //check for move is possible
     @Override
     public boolean isMoveLegal(Pieces[][] pieces, int x, int y, int i, int j) {

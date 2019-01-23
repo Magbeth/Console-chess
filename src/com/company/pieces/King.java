@@ -19,9 +19,7 @@ public class King extends Pieces {
             return true;
         }
         //possible moves
-        if (Math.abs(i-x) <=1 && Math.abs(j-y) <=1)  return true;
-
-        else return false;
+        return Math.abs(i - x) <= 1 && Math.abs(j - y) <= 1;
     }
 
     public void makeShortCastle(Pieces[][] pieces, int x, int y, int i, int j) {

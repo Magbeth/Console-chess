@@ -9,25 +9,38 @@ public class Board {
     public final int SIZE = 8;
     private Pieces[][] pieces;
     private Color turnToMove = Color.WHITE;
+    private boolean checkToWhite = false;
+    private boolean checktoBlack = false;
+    private int xWhiteKingPosition = 0;
+    private int yWhiteKingPosition = 3;
+    private int xBlackKingPosition = 7;
+    private int yBlackKingPosition = 3;
 
+    private void setKingPosition(int x, int y, Color color) {
+        if (color == Color.WHITE) {
+            xWhiteKingPosition = x;
+            yWhiteKingPosition = y;
+        }
+        else {
+            xBlackKingPosition = x;
+            yBlackKingPosition = y;
+        }
+    }
     public Color getTurnToMove() {
         return turnToMove;
     }
 
-    public void setTurnToMove(Color turnToMove) {
+    private void setTurnToMove(Color turnToMove) {
         this.turnToMove = turnToMove;
     }
 
-    public Pieces[][] getPieces() {
-        return pieces;
-    }
 
-    void swapTurnToMove(Color color) {
+    private void swapTurnToMove(Color color) {
         if (color == Color.WHITE) setTurnToMove(Color.BLACK);
         else setTurnToMove(Color.WHITE);
     }
 
-    int literalToNumber (String s) {
+    private int literalToNumber (String s) {
         int x = 8;
         switch (s.substring(0,1)) {
             case "A":
@@ -58,45 +71,43 @@ public class Board {
         return x;
     }
 
-    //starting desc representation
-    private final Pieces[][] STARTING_BOARD = {
-            {
-                new Rook(Color.WHITE), new Knight(Color.WHITE), new Bishop(Color.WHITE),
-                new King(Color.WHITE), new Queen(Color.WHITE), new Bishop(Color.WHITE),
-                new Knight(Color.WHITE), new Rook(Color.WHITE)
-            },
-            {
-                new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE),
-                new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE),
-                new Pawn(Color.WHITE), new Pawn(Color.WHITE)
-            },
-            {
-                null, null, null, null, null, null, null, null
-            },
-            {
-                null, null, null, null, null, null, null, null
-            },
-            {
-                null, null, null, null, null, null, null, null
-            },
-            {
-                null, null, null, null, null, null, null, null
-            },
-            {
-                new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK),
-                new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK),
-                new Pawn(Color.BLACK), new Pawn(Color.BLACK)
-            },
-            {
-                new Rook(Color.BLACK), new Knight(Color.BLACK), new Bishop(Color.BLACK),
-                new King(Color.BLACK), new Queen(Color.BLACK), new Bishop(Color.BLACK),
-                new Knight(Color.BLACK), new Rook(Color.BLACK)
-            }
-    };
-
     //Initializing desk with pieces
     public Board() {
-        this.pieces = STARTING_BOARD;
+        //starting desc representation
+        this.pieces = new Pieces[][]{
+                {
+                        new Rook(Color.WHITE), new Knight(Color.WHITE), new Bishop(Color.WHITE),
+                        new King(Color.WHITE), new Queen(Color.WHITE), new Bishop(Color.WHITE),
+                        new Knight(Color.WHITE), new Rook(Color.WHITE)
+                },
+                {
+                        new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE),
+                        new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE),
+                        new Pawn(Color.WHITE), new Pawn(Color.WHITE)
+                },
+                {
+                        null, null, null, null, null, null, null, null
+                },
+                {
+                        null, null, null, null, null, null, null, null
+                },
+                {
+                        null, null, null, null, null, null, null, null
+                },
+                {
+                        null, null, null, null, null, null, null, null
+                },
+                {
+                        new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK),
+                        new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK),
+                        new Pawn(Color.BLACK), new Pawn(Color.BLACK)
+                },
+                {
+                        new Rook(Color.BLACK), new Knight(Color.BLACK), new Bishop(Color.BLACK),
+                        new King(Color.BLACK), new Queen(Color.BLACK), new Bishop(Color.BLACK),
+                        new Knight(Color.BLACK), new Rook(Color.BLACK)
+                }
+        };
     }
 
     //display current desc state to console
@@ -119,43 +130,56 @@ public class Board {
         int x = Integer.parseInt(from.substring(1)) - 1;
         int j = literalToNumber(to);
         int i = Integer.parseInt(to.substring(1)) - 1;
-        Pieces pie = null;
+        Pieces pie = new Pieces();
         switch (piece) {
             case "P":
-                pie = new Pawn();
+                pie = new Pawn(pieces[x][y].color);
                 break;
             case "Q":
-                pie = new Queen();
+                pie = new Queen(pieces[x][y].color);
                 break;
             case "K":
-                pie = new King();
+                pie = new King(pieces[x][y].color);
                 break;
             case "N":
-                pie = new Knight();
+                pie = new Knight(pieces[x][y].color);
                 break;
             case "R":
-                pie = new Rook();
+                pie = new Rook(pieces[x][y].color);
                 break;
             case "B":
-                pie = new Bishop();
+                pie = new Bishop(pieces[x][y].color);
                 break;
         }
-        if (pieces[x][y].color != turnToMove) System.out.println("-----It is " + turnToMove + " turn to move!-----");
+        if (pie.color != turnToMove) System.out.println("-----It is " + turnToMove + " turn to move!-----");
         //check for move possibility
-        if(pie.isMoveLegal(pieces, x, y, i, j) && pieces[x][y].color == turnToMove) {
+        if(pie.isMoveLegal(pieces, x, y, i, j) && pie.color == turnToMove) {
 
             //Castle become not available if King or Rook moved
             if (pie instanceof King) {
-                pie.setShortCastleAvailable(false, pieces[x][y].color);
-                pie.setLongCastleAvailable(false, pieces[x][y].color);
+                pie.setShortCastleAvailable(false, pie.color);
+                pie.setLongCastleAvailable(false, pie.color);
+                setKingPosition(i, j, pie.color);
             }
             else if (pie instanceof Rook) {
-                if (y == 0) pie.setShortCastleAvailable(false, pieces[x][y].color);
-                else if (y == 7) pie.setLongCastleAvailable(false, pieces[x][y].color);
+                if (y == 0) pie.setShortCastleAvailable(false, pie.color);
+                else if (y == 7) pie.setLongCastleAvailable(false, pie.color);
             }
             //make move
             pie.makeMove(pieces, x, y, i, j);
-            swapTurnToMove(pieces[i][j].color);
+            if (pie.color == Color.WHITE) {
+                if (pie.isCheckToEnemy(pieces, i, j, xBlackKingPosition, yBlackKingPosition)) {
+                    System.out.println("-----CHECK to BLACK-------");
+                    checktoBlack = true;
+                }
+            }
+            else {
+                if (pie.isCheckToEnemy(pieces, i, j, xWhiteKingPosition, yWhiteKingPosition)) {
+                    System.out.println("-----CHECK to WHITE-------");
+                    checkToWhite = true;
+                }
+            }
+            swapTurnToMove(pie.color);
         }
     }
 }
