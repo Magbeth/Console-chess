@@ -131,7 +131,7 @@ public class Board {
         int x = Integer.parseInt(from.substring(1)) - 1;
         int j = literalToNumber(to);
         int i = Integer.parseInt(to.substring(1)) - 1;
-        Piece pie = new Piece();
+        Piece pie;
         switch (piece) {
             case "P":
                 pie = new Pawn(pieces[x][y].color);
@@ -151,6 +151,8 @@ public class Board {
             case "B":
                 pie = new Bishop(pieces[x][y].color);
                 break;
+                default:
+                    pie = null;
         }
         if (pie.color != turnToMove) System.out.println("-----It is " + turnToMove + " turn to move!-----");
         //check for move possibility

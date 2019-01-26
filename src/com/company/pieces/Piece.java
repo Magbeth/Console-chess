@@ -68,7 +68,7 @@ public class Piece {
 //                System.out.println(pieces[a][b] +" " + a + " " + b);
                 if (pieces[a][b] != null && pieces[a][b].color != pieces[i][j].color) {
                     if (pieces[a][b].isMoveLegal(pieces, a, b, xKingPosition, yKingPosition)) {
-                        System.out.println("-----KING is under Attack!-----");
+                        System.out.println("-----Impossible move!-----");
                         kingUnderAttack = true;
                         break out;
                     }
