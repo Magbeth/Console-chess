@@ -7,10 +7,11 @@ public class Board {
     public enum Color {BLACK, WHITE}
 
     public final int SIZE = 8;
-    private Pieces[][] pieces;
+    private Piece[][] pieces;
     private Color turnToMove = Color.WHITE;
     private boolean checkToWhite = false;
     private boolean checktoBlack = false;
+
     private int xWhiteKingPosition = 0;
     private int yWhiteKingPosition = 3;
     private int xBlackKingPosition = 7;
@@ -74,7 +75,7 @@ public class Board {
     //Initializing desk with pieces
     public Board() {
         //starting desc representation
-        this.pieces = new Pieces[][]{
+        this.pieces = new Piece[][]{
                 {
                         new Rook(Color.WHITE), new Knight(Color.WHITE), new Bishop(Color.WHITE),
                         new King(Color.WHITE), new Queen(Color.WHITE), new Bishop(Color.WHITE),
@@ -130,7 +131,7 @@ public class Board {
         int x = Integer.parseInt(from.substring(1)) - 1;
         int j = literalToNumber(to);
         int i = Integer.parseInt(to.substring(1)) - 1;
-        Pieces pie = new Pieces();
+        Piece pie = new Piece();
         switch (piece) {
             case "P":
                 pie = new Pawn(pieces[x][y].color);
@@ -166,20 +167,34 @@ public class Board {
                 else if (y == 7) pie.setLongCastleAvailable(false, pie.color);
             }
             //make move
-            pie.makeMove(pieces, x, y, i, j);
+//            pie.makeMove(pieces, x, y, i, j);
+            int kingPositionX;
+            int kingPositionY;
             if (pie.color == Color.WHITE) {
-                if (pie.isCheckToEnemy(pieces, i, j, xBlackKingPosition, yBlackKingPosition)) {
-                    System.out.println("-----CHECK to BLACK-------");
-                    checktoBlack = true;
-                }
+                kingPositionX = xWhiteKingPosition;
+                kingPositionY = yWhiteKingPosition;
             }
             else {
-                if (pie.isCheckToEnemy(pieces, i, j, xWhiteKingPosition, yWhiteKingPosition)) {
-                    System.out.println("-----CHECK to WHITE-------");
-                    checkToWhite = true;
-                }
+                kingPositionX = xBlackKingPosition;
+                kingPositionY = yBlackKingPosition;
             }
-            swapTurnToMove(pie.color);
+            if (!pie.isKingUnderAttack(pieces, x, y, i, j, kingPositionX, kingPositionY)) {
+//                System.out.println("Move is possible");
+                pie.makeMove(pieces, x, y, i, j);
+
+                if (pie.color == Color.WHITE) {
+                    if (pie.isCheckToEnemy(pieces, i, j, xBlackKingPosition, yBlackKingPosition)) {
+                        System.out.println("-------CHECK to BLACK-------");
+                        checktoBlack = true;
+                    }
+                } else {
+                    if (pie.isCheckToEnemy(pieces, i, j, xWhiteKingPosition, yWhiteKingPosition)) {
+                        System.out.println("-------CHECK to WHITE-------");
+                        checkToWhite = true;
+                    }
+                }
+                swapTurnToMove(pie.color);
+            }
         }
     }
 }

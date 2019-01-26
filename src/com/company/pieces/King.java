@@ -2,12 +2,12 @@ package com.company.pieces;
 
 import com.company.Board;
 
-public class King extends Pieces {
+public class King extends Piece {
 
 
     //check for move is possible
     @Override
-    public boolean isMoveLegal(Pieces[][] pieces, int x, int y, int i, int j) {
+    public boolean isMoveLegal(Piece[][] pieces, int x, int y, int i, int j) {
         hasObstacle = false;
         //check for ally on destination point
         if(isDestinationAlly(pieces[x][y], pieces[i][j])) return false;
@@ -22,14 +22,14 @@ public class King extends Pieces {
         return Math.abs(i - x) <= 1 && Math.abs(j - y) <= 1;
     }
 
-    public void makeShortCastle(Pieces[][] pieces, int x, int y, int i, int j) {
+    public void makeShortCastle(Piece[][] pieces, int x, int y, int i, int j) {
         pieces[i][j] = pieces[x][y];
         pieces[x][y] = null;
         pieces[i][j+1] = pieces[i][j-1];
         pieces[i][j-1] = null;
     }
 
-    public void makeLongCastle(Pieces[][] pieces, int x, int y, int i, int j) {
+    public void makeLongCastle(Piece[][] pieces, int x, int y, int i, int j) {
         pieces[i][j] = pieces[x][y];
         pieces[x][y] = null;
         pieces[i][j - 1] = pieces[i][j + 2];
@@ -37,7 +37,7 @@ public class King extends Pieces {
     }
 
     @Override
-    public void makeMove(Pieces[][] pieces, int x, int y, int i, int j) {
+    public void makeMove(Piece[][] pieces, int x, int y, int i, int j) {
         if (Math.abs(i - x) <= 1 && Math.abs(j-y) <= 1 ) {
             pieces[i][j] = pieces[x][y];
             pieces[x][y] = null;

@@ -2,7 +2,7 @@ package com.company.pieces;
 
 import com.company.Board;
 
-public class Pieces {
+public class Piece {
     public Board.Color color;
     boolean hasObstacle = false;
 
@@ -33,27 +33,50 @@ public class Pieces {
 //        System.out.println(color + "short castle " + castleAvailable);
     }
 
-    public boolean isDestinationAlly(Pieces piece1, Pieces piece2) {
+    public boolean isDestinationAlly(Piece piece1, Piece piece2) {
         if (piece2 != null && piece1.color == piece2.color) {
             System.out.println("Invalid move. Ally on destination point");
             return true;
         }
         else return false;
     }
-    public boolean isMoveLegal(Pieces[][] pieces, int x, int y, int i, int j) {
+    public boolean isMoveLegal(Piece[][] pieces, int x, int y, int i, int j) {
         return true;
     }
 
-    public void makeMove(Pieces[][] pieces, int x, int y, int i, int j) {
+    public void makeMove(Piece[][] pieces, int x, int y, int i, int j) {
         pieces[i][j] = pieces[x][y];
         pieces[x][y] = null;
     }
 
-    public boolean isCheckToEnemy(Pieces[][] pieces, int i, int j, int x, int y) {
-        return pieces[i][j].isMoveLegal(pieces, i, j, x, y) && pieces[i][j].color != pieces[x][y].color;
+    public boolean isCheckToEnemy(Piece[][] pieces, int i, int j, int xKingPosition, int yKingPosition) {
+        return pieces[i][j].isMoveLegal(pieces, i, j, xKingPosition, yKingPosition) && pieces[i][j].color != pieces[xKingPosition][yKingPosition].color;
     }
 
-    public boolean kingUnderAttack(Pieces[][] pieces, int i, int j, int x, int y) {
-        return false;
+    public boolean isKingUnderAttack(Piece[][] pieces, int x, int y, int i, int j, int xKingPosition, int yKingPosition) {
+//        Piece[][] piecesAfterMove = pieces.clone();
+//        piecesAfterMove[i][j] = piecesAfterMove[x][y];
+//        piecesAfterMove[x][y] = null;
+//        piecesAfterMove[x][y].makeMove(piecesAfterMove, x, y, i, j);
+        pieces[i][j] = pieces[x][y];
+        pieces[x][y] = null;
+
+        boolean kingUnderAttack = false;
+        out:
+        for (int a = 0; a < 8; a++) {
+            for (int b = 0; b < 8; b++) {
+//                System.out.println(pieces[a][b] +" " + a + " " + b);
+                if (pieces[a][b] != null && pieces[a][b].color != pieces[i][j].color) {
+                    if (pieces[a][b].isMoveLegal(pieces, a, b, xKingPosition, yKingPosition)) {
+                        System.out.println("-----KING is under Attack!-----");
+                        kingUnderAttack = true;
+                        break out;
+                    }
+                }
+            }
+        }
+        pieces[x][y] = pieces[i][j];
+        pieces[i][j] = null;
+        return kingUnderAttack;
     }
 }

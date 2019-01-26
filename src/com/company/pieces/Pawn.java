@@ -3,7 +3,7 @@ package com.company.pieces;
 import com.company.Board;
 
 
-public class Pawn extends Pieces {
+public class Pawn extends Piece {
     public boolean firstMove;
 
     public Pawn() {
@@ -11,7 +11,7 @@ public class Pawn extends Pieces {
 
     //check for move is possible
     @Override
-    public boolean isMoveLegal(Pieces[][] pieces, int x, int y, int i, int j) {
+    public boolean isMoveLegal(Piece[][] pieces, int x, int y, int i, int j) {
         if(pieces[i][j] != null && j - y == 0) return false;
         //check if it fist move for pawn
         if (x == 1 || x == 6) firstMove = true;

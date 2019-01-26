@@ -2,13 +2,13 @@ package com.company.pieces;
 
 import com.company.Board;
 
-public class Knight extends Pieces {
+public class Knight extends Piece {
     public Knight() {
     }
 
     //check for move is possible
     @Override
-    public boolean isMoveLegal(Pieces[][] pieces, int x, int y, int i, int j) {
+    public boolean isMoveLegal(Piece[][] pieces, int x, int y, int i, int j) {
         //check for ally piece on destination square
         if(isDestinationAlly(pieces[x][y], pieces[i][j])) return false;
         //possible moves
