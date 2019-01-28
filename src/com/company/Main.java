@@ -15,7 +15,8 @@ public class Main {
                 System.out.println("-------" + board.getTurnToMove() + " turn to move.-------");
                 String s = sc.nextLine();
                 String[] move = s.toUpperCase().trim().split(" ");
-                board.makeMove(move[0], move[1], move[2]);
+                if (move.length > 3) throw new Exception();
+                board.makeMove(move[1], move[2]);
                 board.printBoard(board);
             }
             catch (Exception e) {

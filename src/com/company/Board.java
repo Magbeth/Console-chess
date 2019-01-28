@@ -126,34 +126,15 @@ public class Board {
     }
 
     //checking if user move is possible and changing game desc state if true
-    public void makeMove(String piece, String from, String to) {
+    public void makeMove(String from, String to) {
+        //Translating user input to coordinates
         int y = literalToNumber(from);
         int x = Integer.parseInt(from.substring(1)) - 1;
         int j = literalToNumber(to);
         int i = Integer.parseInt(to.substring(1)) - 1;
-        Piece pie;
-        switch (piece) {
-            case "P":
-                pie = new Pawn(pieces[x][y].color);
-                break;
-            case "Q":
-                pie = new Queen(pieces[x][y].color);
-                break;
-            case "K":
-                pie = new King(pieces[x][y].color);
-                break;
-            case "N":
-                pie = new Knight(pieces[x][y].color);
-                break;
-            case "R":
-                pie = new Rook(pieces[x][y].color);
-                break;
-            case "B":
-                pie = new Bishop(pieces[x][y].color);
-                break;
-                default:
-                    pie = null;
-        }
+        Piece pie = pieces[x][y];
+
+        //check turn to move
         if (pie.color != turnToMove) System.out.println("-----It is " + turnToMove + " turn to move!-----");
         //check for move possibility
         if(pie.isMoveLegal(pieces, x, y, i, j) && pie.color == turnToMove) {
@@ -169,7 +150,6 @@ public class Board {
                 else if (y == 7) pie.setLongCastleAvailable(false, pie.color);
             }
             //make move
-//            pie.makeMove(pieces, x, y, i, j);
             int kingPositionX;
             int kingPositionY;
             if (pie.color == Color.WHITE) {

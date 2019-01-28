@@ -22,14 +22,14 @@ public class King extends Piece {
         return Math.abs(i - x) <= 1 && Math.abs(j - y) <= 1;
     }
 
-    public void makeShortCastle(Piece[][] pieces, int x, int y, int i, int j) {
+    private void makeShortCastle(Piece[][] pieces, int x, int y, int i, int j) {
         pieces[i][j] = pieces[x][y];
         pieces[x][y] = null;
         pieces[i][j+1] = pieces[i][j-1];
         pieces[i][j-1] = null;
     }
 
-    public void makeLongCastle(Piece[][] pieces, int x, int y, int i, int j) {
+    private void makeLongCastle(Piece[][] pieces, int x, int y, int i, int j) {
         pieces[i][j] = pieces[x][y];
         pieces[x][y] = null;
         pieces[i][j - 1] = pieces[i][j + 2];
