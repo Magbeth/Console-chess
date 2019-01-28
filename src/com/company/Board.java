@@ -12,6 +12,7 @@ public class Board {
     private boolean checkToWhite = false;
     private boolean checktoBlack = false;
 
+    //King coordinates for checking of move possibility. King can't move on attacked squares and can't remain under check after move
     private int xWhiteKingPosition = 0;
     private int yWhiteKingPosition = 3;
     private int xBlackKingPosition = 7;
@@ -41,6 +42,7 @@ public class Board {
         else setTurnToMove(Color.WHITE);
     }
 
+    //Transform user input for columns into array indexes
     private int literalToNumber (String s) {
         int x = 8;
         switch (s.substring(0,1)) {
@@ -151,18 +153,11 @@ public class Board {
                 kingPositionY = yBlackKingPosition;
             }
             if (!pie.isKingUnderAttack(pieces, x, y, i, j, kingPositionX, kingPositionY)) {
-//                System.out.println("Move is possible");
 
-                //Castle become not available if King or Rook moved
-                if (pie instanceof King && (pie.isShortCastleAvailable(pie.color) || pie.isLongCastleAvailable(pie.color))) {
-                    pie.setShortCastleAvailable(false, pie.color);
-                    pie.setLongCastleAvailable(false, pie.color);
+                if (pie instanceof King) {
                     setKingPosition(i, j, pie.color);
                 }
-                else if (pie instanceof Rook && (pie.isShortCastleAvailable(pie.color) || pie.isLongCastleAvailable(pie.color))) {
-                    if (y == 0) pie.setShortCastleAvailable(false, pie.color);
-                    else if (y == 7) pie.setLongCastleAvailable(false, pie.color);
-                }
+
                 pie.makeMove(pieces, x, y, i, j);
 
                 if (pie.color == Color.WHITE) {
@@ -179,5 +174,6 @@ public class Board {
                 swapTurnToMove(pie.color);
             }
         }
+        else System.out.println("-----------Invalid move-----------");
     }
 }

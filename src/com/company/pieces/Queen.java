@@ -27,6 +27,7 @@ public class Queen extends Piece {
 
         else return false;
     }
+
     public Queen(Board.Color color) {
         this.color = color;
     }

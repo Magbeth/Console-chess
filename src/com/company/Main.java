@@ -12,7 +12,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         while (true) {
             try {
-                System.out.println("-------" + board.getTurnToMove() + " turn to move.-------");
+                System.out.println("--------" + board.getTurnToMove() + " turn to move.--------");
                 String s = sc.nextLine();
                 String[] move = s.toUpperCase().trim().split(" ");
                 if (move.length > 3) throw new Exception();
@@ -20,7 +20,7 @@ public class Main {
                 board.printBoard(board);
             }
             catch (Exception e) {
-                System.out.println("----------Invalid move----------");
+                System.out.println("----------Wrong input---------");
                 board.printBoard(board);
             }
         }

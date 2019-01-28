@@ -41,6 +41,8 @@ public class King extends Piece {
         if (Math.abs(i - x) <= 1 && Math.abs(j-y) <= 1 ) {
             pieces[i][j] = pieces[x][y];
             pieces[x][y] = null;
+            setShortCastleAvailable(false, pieces[i][j].color);
+            setLongCastleAvailable(false, pieces[i][j].color);
         }
         else if (i - x == 0 && j == 1) makeShortCastle(pieces, x, y, i, j);
         else if (i - x == 0 && j == 5) makeLongCastle(pieces, x, y, i, j);

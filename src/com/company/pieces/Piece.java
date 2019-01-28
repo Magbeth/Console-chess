@@ -6,30 +6,36 @@ public class Piece {
     public Board.Color color;
     boolean hasObstacle = false;
 
-    private static boolean isWhiteShortCastleAvailable = true;
-    private static boolean isBlackShortCastleAvailable = true;
-    private static boolean isWhiteLongCastleAvailable = true;
-    private static boolean isBlackLongCastleAvailable = true;
+    private static boolean whiteShortCastleAvailable = true;
+    private static boolean blackShortCastleAvailable = true;
+    private static boolean whiteLongCastleAvailable = true;
+    private static boolean blackLongCastleAvailable = true;
 
     public boolean isShortCastleAvailable(Board.Color color) {
-        if (color == Board.Color.BLACK)return isBlackShortCastleAvailable;
-        else return isWhiteShortCastleAvailable;
+        if (color == Board.Color.BLACK) return blackShortCastleAvailable;
+        else {
+            System.out.println("---Short Castle is not available---");
+            return whiteShortCastleAvailable;
+        }
     }
 
     public boolean isLongCastleAvailable(Board.Color color) {
-        if (color == Board.Color.WHITE) return isWhiteLongCastleAvailable;
-        else return isBlackLongCastleAvailable;
+        if (color == Board.Color.WHITE) return whiteLongCastleAvailable;
+        else {
+            System.out.println("---Long Castle is not available---");
+            return blackLongCastleAvailable;
+        }
     }
 
     public void setLongCastleAvailable(boolean longCastleAvailable, Board.Color color) {
-        if (color == Board.Color.WHITE) isWhiteLongCastleAvailable = longCastleAvailable;
-        else if (color == Board.Color.BLACK) isBlackLongCastleAvailable = longCastleAvailable;
+        if (color == Board.Color.WHITE) whiteLongCastleAvailable = longCastleAvailable;
+        else if (color == Board.Color.BLACK) blackLongCastleAvailable = longCastleAvailable;
 //        System.out.println(color + "long castle " + longCastleAvailable);
     }
 
     public void setShortCastleAvailable(boolean castleAvailable, Board.Color color) {
-        if (color == Board.Color.WHITE) isWhiteShortCastleAvailable = castleAvailable;
-        else if (color == Board.Color.BLACK) isBlackShortCastleAvailable = castleAvailable;
+        if (color == Board.Color.WHITE) whiteShortCastleAvailable = castleAvailable;
+        else if (color == Board.Color.BLACK) blackShortCastleAvailable = castleAvailable;
 //        System.out.println(color + "short castle " + castleAvailable);
     }
 

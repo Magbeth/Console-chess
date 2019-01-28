@@ -16,14 +16,20 @@ public class Pawn extends Piece {
         //check if it fist move for pawn
         if (x == 1 || x == 6) firstMove = true;
         //possible first move for WHITE
-        if (i - x == 2 && firstMove && pieces[i-1][j] == null) return true;
+        if (i - x == 2 && j - y == 0 && firstMove && pieces[i-1][j] == null) return true;
         //possible first move for BLACK
-        if (i - x == -2 && firstMove && pieces[i+1][j] == null) return true;
+        if (i - x == -2 && j - y == 0 && firstMove && pieces[i+1][j] == null) return true;
         //other possible moves excluding destroying enemy pieces
-        if (((i-x == 1 && pieces[x][y].color == Board.Color.WHITE) || (i-x == -1 && pieces[x][y].color == Board.Color.BLACK)) && j - y == 0) return true;
+        if (((i - x == 1 && pieces[x][y].color == Board.Color.WHITE) || (i - x == -1 && pieces[x][y].color == Board.Color.BLACK)) && j - y == 0) return true;
         //destroying enemy pieces
-        if (!isDestinationAlly(pieces[x][y], pieces[i][j]) && Math.abs(i-x) == 1 && Math.abs(j - y) == 1) return true;
-        else return false;
+        return !isDestinationAlly(pieces[x][y], pieces[i][j]) && Math.abs(i - x) == 1 && Math.abs(j - y) == 1;
+    }
+
+    @Override
+    public void makeMove(Piece[][] pieces, int x, int y, int i, int j) {
+        pieces[i][j] = pieces[x][y];
+        pieces[x][y] = null;
+        firstMove = false;
     }
 
     public Pawn(Board.Color color) {

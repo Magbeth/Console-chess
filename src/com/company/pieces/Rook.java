@@ -10,7 +10,6 @@ public class Rook extends Piece {
     public boolean isMoveLegal(Piece[][] pieces, int x, int y, int i, int j) {
         //check for ally piece on destination square
         if(isDestinationAlly(pieces[x][y], pieces[i][j])) return false;
-//        if (pieces[i][j] != null && pieces[i][j].color == pieces[x][y].color) return false;
         //check for obstacle on path
         hasObstacle = false;
         if (i - x == 0) {
@@ -31,6 +30,14 @@ public class Rook extends Piece {
         }
         //possible moves
         return (i - x == 0 || j - y == 0) && !hasObstacle;
+    }
+
+    @Override
+    public void makeMove(Piece[][] pieces, int x, int y, int i, int j) {
+        if (y == 0) setShortCastleAvailable(false, pieces[x][y].color);
+        else if (y == 7) setLongCastleAvailable(false, pieces[x][y].color);
+        pieces[i][j] = pieces[x][y];
+        pieces[x][y] = null;
     }
 
     public Rook(Board.Color color) {
