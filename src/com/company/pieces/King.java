@@ -12,10 +12,10 @@ public class King extends Piece {
         //check for ally on destination point
         if(isDestinationAlly(pieces[x][y], pieces[i][j])) return false;
         //castling
-        if (isShortCastleAvailable(pieces[x][y].color) && !hasObstacle && i - x == 0 && j == 1) {
+        if (i - x == 0 && j == 1 && isShortCastleAvailable(pieces[x][y].color) && !hasObstacle) {
             return true;
         }
-        if (isLongCastleAvailable(pieces[x][y].color) && !hasObstacle && i - x == 0 && j == 5) {
+        if (i - x == 0 && j == 5 && isLongCastleAvailable(pieces[x][y].color) && !hasObstacle) {
             return true;
         }
         //possible moves

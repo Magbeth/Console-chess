@@ -139,16 +139,6 @@ public class Board {
         //check for move possibility
         if(pie.isMoveLegal(pieces, x, y, i, j) && pie.color == turnToMove) {
 
-            //Castle become not available if King or Rook moved
-            if (pie instanceof King) {
-                pie.setShortCastleAvailable(false, pie.color);
-                pie.setLongCastleAvailable(false, pie.color);
-                setKingPosition(i, j, pie.color);
-            }
-            else if (pie instanceof Rook) {
-                if (y == 0) pie.setShortCastleAvailable(false, pie.color);
-                else if (y == 7) pie.setLongCastleAvailable(false, pie.color);
-            }
             //make move
             int kingPositionX;
             int kingPositionY;
@@ -162,6 +152,17 @@ public class Board {
             }
             if (!pie.isKingUnderAttack(pieces, x, y, i, j, kingPositionX, kingPositionY)) {
 //                System.out.println("Move is possible");
+
+                //Castle become not available if King or Rook moved
+                if (pie instanceof King && (pie.isShortCastleAvailable(pie.color) || pie.isLongCastleAvailable(pie.color))) {
+                    pie.setShortCastleAvailable(false, pie.color);
+                    pie.setLongCastleAvailable(false, pie.color);
+                    setKingPosition(i, j, pie.color);
+                }
+                else if (pie instanceof Rook && (pie.isShortCastleAvailable(pie.color) || pie.isLongCastleAvailable(pie.color))) {
+                    if (y == 0) pie.setShortCastleAvailable(false, pie.color);
+                    else if (y == 7) pie.setLongCastleAvailable(false, pie.color);
+                }
                 pie.makeMove(pieces, x, y, i, j);
 
                 if (pie.color == Color.WHITE) {
