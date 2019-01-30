@@ -8,9 +8,12 @@ Ready features:
 - Added checking whose move is and swapping turn of move.
 - Board annotations classical for chess (Literal signatures for columns and numeric for rows)
 - check-escaping and check-avoiding added
+- Checkmate and game ending added.
+- FindAllMoves function added for easier testing and check for checkmate.
+
 
 TODO:
- - ADD check checkmate
  - ADD en passant
+ - ADD pawn promotion
  
  

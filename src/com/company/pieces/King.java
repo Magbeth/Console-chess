@@ -22,6 +22,7 @@ public class King extends Piece {
         return Math.abs(i - x) <= 1 && Math.abs(j - y) <= 1;
     }
 
+
     private void makeShortCastle(Piece[][] pieces, int x, int y, int i, int j) {
         pieces[i][j] = pieces[x][y];
         pieces[x][y] = null;
@@ -57,6 +58,7 @@ public class King extends Piece {
 
     @Override
     public String toString() {
-        return "K";
+        if (this.color == Board.Color.WHITE) return "K";
+        else return "k";
     }
 }

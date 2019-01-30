@@ -22,6 +22,7 @@ public class Knight extends Piece {
 
     @Override
     public String toString() {
-        return "N";
+        if (this.color == Board.Color.WHITE) return "N";
+        else return "n";
     }
 }

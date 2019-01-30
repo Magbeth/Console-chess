@@ -2,6 +2,9 @@ package com.company;
 
 import com.company.pieces.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
 
     public enum Color {BLACK, WHITE}
@@ -11,6 +14,9 @@ public class Board {
     private Color turnToMove = Color.WHITE;
     private boolean checkToWhite = false;
     private boolean checktoBlack = false;
+    private boolean checkmateToWhite = false;
+    private boolean checkmateToBlack = false;
+//    List<String> possibleMoves;
 
     //King coordinates for checking of move possibility. King can't move on attacked squares and can't remain under check after move
     private int xWhiteKingPosition = 0;
@@ -74,6 +80,37 @@ public class Board {
         return x;
     }
 
+    private String numberToLiteral (int n) {
+        String s = "";
+        switch (n) {
+            case 0:
+                s = "H";
+                break;
+            case 1:
+                s = "G";
+                break;
+            case 2:
+                s = "F";
+                break;
+            case 3:
+                s = "E";
+                break;
+            case 4:
+                s = "D";
+                break;
+            case 5:
+                s = "C";
+                break;
+            case 6:
+                s = "B";
+                break;
+            case 7:
+                s = "A";
+                break;
+        }
+        return s;
+    }
+
     //Initializing desk with pieces
     public Board() {
         //starting desc representation
@@ -127,6 +164,45 @@ public class Board {
         }
     }
 
+    public List<String> findPossibleMoves(Piece[][] pieces, Color color) {
+        List<String> possibleMoves = new ArrayList<>();
+
+        for (int a = 0; a < 8; a++) {
+            for (int b = 0; b < 8; b++) {
+                if (pieces[a][b] != null && pieces[a][b].color == color) {
+                    for(int i = 0; i < 8; i++) {
+                        for(int j = 0; j < 8; j++) {
+                            int kingPositionX;
+                            int kingPositionY;
+                            if (pieces[a][b].color == Color.WHITE) {
+                                kingPositionX = xWhiteKingPosition;
+                                kingPositionY = yWhiteKingPosition;
+                            }
+                            else {
+                                kingPositionX = xBlackKingPosition;
+                                kingPositionY = yBlackKingPosition;
+                            }
+                                if(pieces[a][b].isMoveLegal(pieces, a, b, i, j) && !pieces[a][b].isKingUnderAttack(pieces, a, b, i, j, kingPositionX, kingPositionY)) {
+                                    String move = pieces[a][b].toString() + " " + numberToLiteral(b) + "" + (a + 1) + " " + numberToLiteral(j) + "" + (i + 1);
+                                    possibleMoves.add(move);
+                                }
+                        }
+                    }
+                }
+            }
+        }
+        return possibleMoves;
+    }
+
+    public void printPossibleMoves() {
+        List<String> possibleMoves = findPossibleMoves(pieces, turnToMove);
+        for (String move : possibleMoves) System.out.print(move + " ");
+        System.out.println();
+    }
+
+    public int getPossibleMovesNumber() {
+        return findPossibleMoves(pieces, turnToMove).size();
+    }
     //checking if user move is possible and changing game desc state if true
     public void makeMove(String from, String to) {
         //Translating user input to coordinates
@@ -152,6 +228,7 @@ public class Board {
                 kingPositionX = xBlackKingPosition;
                 kingPositionY = yBlackKingPosition;
             }
+
             if (!pie.isKingUnderAttack(pieces, x, y, i, j, kingPositionX, kingPositionY)) {
 
                 if (pie instanceof King) {

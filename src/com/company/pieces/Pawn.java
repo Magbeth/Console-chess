@@ -22,7 +22,7 @@ public class Pawn extends Piece {
         //other possible moves excluding destroying enemy pieces
         if (((i - x == 1 && pieces[x][y].color == Board.Color.WHITE) || (i - x == -1 && pieces[x][y].color == Board.Color.BLACK)) && j - y == 0) return true;
         //destroying enemy pieces
-        return !isDestinationAlly(pieces[x][y], pieces[i][j]) && Math.abs(i - x) == 1 && Math.abs(j - y) == 1;
+        return pieces[i][j] != null && !isDestinationAlly(pieces[x][y], pieces[i][j]) && Math.abs(i - x) == 1 && Math.abs(j - y) == 1;
     }
 
     @Override
@@ -38,6 +38,7 @@ public class Pawn extends Piece {
 
     @Override
     public String toString() {
-        return "P";
+        if (this.color == Board.Color.WHITE) return "P";
+        else return "p";
     }
 }
