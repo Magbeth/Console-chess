@@ -8,21 +8,23 @@ public class Knight extends Piece {
     @Override
     public boolean isMoveLegal(Piece[][] pieces, int x, int y, int i, int j) {
         //check for ally piece on destination square
-        if(isDestinationAlly(pieces[x][y], pieces[i][j])) return false;
+        if (isDestinationAlly(pieces[x][y], pieces[i][j])) {
+            return false;
+        }
         //possible moves
         return (Math.abs(i - x) == 2 && Math.abs(j - y) == 1) || (Math.abs(i - x) == 1 && Math.abs(j - y) == 2);
     }
 
     public Knight(Board.Color color) {
-        this.color = color;
-    }
-
-    public Knight() {
+        super(color);
     }
 
     @Override
     public String toString() {
-        if (this.color == Board.Color.WHITE) return "N";
-        else return "n";
+        if (getColor() == Board.Color.WHITE) {
+            return "N";
+        } else {
+            return "n";
+        }
     }
 }
