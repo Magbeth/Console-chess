@@ -12,9 +12,9 @@ public class Rook extends Piece {
     @Override
     public void makeMove(Piece[][] pieces, int x, int y, int i, int j) {
         if (y == 0) {
-            setShortCastleAvailable(false, pieces[x][y].getColor());
+            setShortCastleAvailable(false, getColor());
         } else if (y == 7) {
-            setLongCastleAvailable(false, pieces[x][y].getColor());
+            setLongCastleAvailable(false, getColor());
         }
         pieces[i][j] = pieces[x][y];
         pieces[x][y] = null;

@@ -13,10 +13,10 @@ public class King extends Piece {
             return false;
         }
         //castling
-        if (i - x == 0 && j == 1 && isShortCastleAvailable(pieces[x][y].getColor()) && !hasObstacle) {
+        if (i - x == 0 && j == 1 && isShortCastleAvailable(getColor()) && !hasObstacle) {
             return true;
         }
-        if (i - x == 0 && j == 5 && isLongCastleAvailable(pieces[x][y].getColor()) && !hasObstacle) {
+        if (i - x == 0 && j == 5 && isLongCastleAvailable(getColor()) && !hasObstacle) {
             return true;
         }
         //possible moves
@@ -42,8 +42,8 @@ public class King extends Piece {
         if (Math.abs(i - x) <= 1 && Math.abs(j - y) <= 1) {
             pieces[i][j] = pieces[x][y];
             pieces[x][y] = null;
-            setShortCastleAvailable(false, pieces[i][j].getColor());
-            setLongCastleAvailable(false, pieces[i][j].getColor());
+            setShortCastleAvailable(false, getColor());
+            setLongCastleAvailable(false, getColor());
         } else if (i - x == 0 && j == 1) {
             makeShortCastle(pieces, x, y, i, j);
         } else if (i - x == 0 && j == 5) {

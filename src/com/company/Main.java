@@ -14,7 +14,7 @@ public class Main {
             try {
                 board.printBoard(board);
                 System.out.println("--------" + board.getTurnToMove() + " turn to move.--------");
-//                board.printPossibleMoves();
+                board.printPossibleMoves();
                 if (board.getPossibleMovesNumber() == 0) {
                     System.out.println("------CHECKMATE to " + board.getTurnToMove() + "------");
                     break;
@@ -26,7 +26,6 @@ public class Main {
             }
             catch (Exception e) {
                 System.out.println("----------Wrong input---------");
-//                e.printStackTrace();
             }
         }
 

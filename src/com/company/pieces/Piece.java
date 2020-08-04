@@ -40,7 +40,6 @@ public class Piece {
         } else if (color == Board.Color.BLACK) {
             blackLongCastleAvailable = longCastleAvailable;
         }
-        //        System.out.println(color + "long castle " + longCastleAvailable);
     }
 
     public void setShortCastleAvailable(boolean castleAvailable, Board.Color color) {
@@ -49,16 +48,10 @@ public class Piece {
         } else if (color == Board.Color.BLACK) {
             blackShortCastleAvailable = castleAvailable;
         }
-        //        System.out.println(color + "short castle " + castleAvailable);
     }
 
     public boolean isDestinationAlly(Piece piece1, Piece piece2) {
-        if (piece2 != null && piece1.color == piece2.color) {
-            //            System.out.println("Invalid move. Ally on destination point");
-            return true;
-        } else {
-            return false;
-        }
+        return piece2 != null && piece1.color == piece2.color;
     }
 
     public boolean isMovePossible(Piece[][] pieces, int x, int y, int i, int j) {
@@ -83,7 +76,6 @@ public class Piece {
                 disY = -1;
             }
 
-            //            System.out.println("disX = " + disX + " disY = " + disY);
             do {
                 x = x + disX;
                 y = y + disY;
@@ -93,7 +85,6 @@ public class Piece {
                 if (pieces[x][y] != null) {
                     return false;
                 }
-                //                System.out.println(x + " " + y);
             } while (true);
         } else {
             return false;
@@ -126,7 +117,6 @@ public class Piece {
             for (int b = 0; b < 8; b++) {
                 if (pieces[a][b] != null && pieces[a][b].color != pieces[i][j].color) {
                     if (pieces[a][b].isMoveLegal(pieces, a, b, xKingPosition, yKingPosition)) {
-                        //                        System.out.println("--------Impossible move!--------");
                         kingUnderAttack = true;
                         break out;
                     }

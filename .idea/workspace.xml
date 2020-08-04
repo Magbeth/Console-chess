@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd7dec45-f81b-465d-b440-77c13f96cdd3" name="Default" comment="ref">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="cd7dec45-f81b-465d-b440-77c13f96cdd3" name="Default" comment="refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/company/Board$Color.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/company/Board$Color.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/company/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/company/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Bishop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Bishop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/King.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/King.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Knight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Knight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Pawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Pawn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Piece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Piece.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Queen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Queen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Rook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/company/pieces/Rook.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/pieces/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/pieces/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/pieces/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/pieces/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/pieces/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/pieces/Knight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/pieces/Pawn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/pieces/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/pieces/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/pieces/Queen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/pieces/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/pieces/Rook.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,112 +121,40 @@
       <workItem from="1548762964433" duration="16910000" />
       <workItem from="1548846721065" duration="7978000" />
       <workItem from="1596538027248" duration="2778000" />
+      <workItem from="1596543667673" duration="2581000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="395" y="0" key="CommitChangelistDialog2" timestamp="1596540580424">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="395" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1596540580424" />
-    <state width="1493" height="338" key="GridCell.Tab.0.bottom" timestamp="1596540570845">
+    <state width="1493" height="338" key="GridCell.Tab.0.bottom" timestamp="1596545133648">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="338" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596540570845" />
-    <state width="1493" height="338" key="GridCell.Tab.0.center" timestamp="1596540570845">
+    <state width="1493" height="338" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596545133648" />
+    <state width="1493" height="338" key="GridCell.Tab.0.center" timestamp="1596545133648">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="338" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596540570845" />
-    <state width="1493" height="338" key="GridCell.Tab.0.left" timestamp="1596540570845">
+    <state width="1493" height="338" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596545133648" />
+    <state width="1493" height="338" key="GridCell.Tab.0.left" timestamp="1596545133648">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="338" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596540570845" />
-    <state width="1493" height="338" key="GridCell.Tab.0.right" timestamp="1596540570845">
+    <state width="1493" height="338" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596545133648" />
+    <state width="1493" height="338" key="GridCell.Tab.0.right" timestamp="1596545133648">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="338" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596540570845" />
+    <state width="1493" height="338" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596545133648" />
     <state x="-278" y="115" key="SettingsEditor" timestamp="1596539400878">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-278" y="115" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1596539400878" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>jquery</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>11</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>Chess</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

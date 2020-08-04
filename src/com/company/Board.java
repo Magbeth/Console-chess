@@ -16,13 +16,8 @@ public class Board {
     public enum Color {BLACK, WHITE}
 
     public final int SIZE = 8;
-    private Piece[][] pieces;
+    private final Piece[][] pieces;
     private Color turnToMove = Color.WHITE;
-    private boolean checkToWhite = false;
-    private boolean checktoBlack = false;
-    private boolean checkmateToWhite = false;
-    private boolean checkmateToBlack = false;
-    //    List<String> possibleMoves;
 
     //King coordinates for checking of move possibility. King can't move on attacked squares and can't remain under check after move
     private int xWhiteKingPosition = 0;
@@ -44,15 +39,11 @@ public class Board {
         return turnToMove;
     }
 
-    private void setTurnToMove(Color turnToMove) {
-        this.turnToMove = turnToMove;
-    }
-
     private void swapTurnToMove(Color color) {
         if (color == Color.WHITE) {
-            setTurnToMove(Color.BLACK);
+            this.turnToMove = Color.BLACK;
         } else {
-            setTurnToMove(Color.WHITE);
+            this.turnToMove = Color.WHITE;
         }
     }
 
@@ -255,12 +246,10 @@ public class Board {
                 if (pie.getColor() == Color.WHITE) {
                     if (pie.isCheckToEnemy(pieces, i, j, xBlackKingPosition, yBlackKingPosition)) {
                         System.out.println("-------CHECK to BLACK-------");
-                        checktoBlack = true;
                     }
                 } else {
                     if (pie.isCheckToEnemy(pieces, i, j, xWhiteKingPosition, yWhiteKingPosition)) {
                         System.out.println("-------CHECK to WHITE-------");
-                        checkToWhite = true;
                     }
                 }
                 swapTurnToMove(pie.getColor());
